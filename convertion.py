@@ -17,15 +17,20 @@ def pdftojpeg_pdf2image(path):
     
     os.chdir(path)
     
-        for pdf_file in os.listdir(path):
+    for pdf_file in os.listdir(path):
+                        
+       if pdf_file.endswith(".pdf"):
+
+           pages = convert_from_path(pdf_file, 300)
+           pdf_file = pdf_file[:-4]
     
-            if pdf_file.endswith(".pdf"):
+           for page in pages:
+               
     
-                pages = convert_from_path(pdf_file, 300)
-                pdf_file = pdf_file[:-4]
-    
-                for page in pages:
-    
-                   page.save("%s-page%d.jpg" % (pdf_file,pages.index(page)), "JPEG")
+               page.save("%s-page%d.jpg" % (pdf_file,pages.index(page)), "JPEG")
                    
      
+
+path = 'C:\\Users\\j.khorami\\Desktop\\MOVIEs'
+
+pdftojpeg_pdf2image(path)
